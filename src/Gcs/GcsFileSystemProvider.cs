@@ -10,9 +10,10 @@ namespace GoogleStorageFtp.FileSystem.Gcs
         public Task<IUnixFileSystem> Create(IAccountInformation accountInformation)
         {
             // TODO: Update the bucketName variable with the actual name of the bucket
-            var bucketName = "[BUCKET-NAME]";
+            var bucketName = Environment.GetEnvironmentVariable("BUCKET_NAME") ?? "[BUCKET-NAME]";
 
             return Task.FromResult<IUnixFileSystem>(new GcsFileSystem(bucketName));
         }
     }
 }
+
